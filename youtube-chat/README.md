@@ -1,6 +1,14 @@
 # Chat Flow
 Chat Flow is designed for conversational application development, building upon the capabilities of standard flow and providing enhanced support for chat inputs/outputs and chat history management. With chat flow, you can easily create a chatbot that handles chat input and output, including complex processes like handling queries about YouTube videos.
 
+## Install Prompt Flow Extension
+
+Before you begin, install the Prompt Flow extension from the Visual Studio Marketplace to integrate directly into your development environment.
+
+Visit: [Prompt Flow Extension](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow)
+
+After installation, go to **Quick Access | Install Dependencies** in your IDE to get Python and the necessary Promptflow packages ready.
+
 ## Create Connection for LLM Tool to Use
 You can follow these steps to create a connection required by the LLM tool.
 
