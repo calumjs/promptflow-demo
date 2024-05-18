@@ -1,0 +1,110 @@
+{
+  "package": {},
+  "code": {
+    "generate_query.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "generate_query.jinja2"
+    },
+    "get_search_results.py": {
+      "type": "python",
+      "inputs": {
+        "searchString": {
+          "type": [
+            "string"
+          ]
+        },
+        "count": {
+          "type": [
+            "int"
+          ],
+          "default": "10"
+        }
+      },
+      "source": "get_search_results.py",
+      "function": "get_youtube_videos"
+    },
+    "get_video_transcript.py": {
+      "type": "python",
+      "inputs": {
+        "video_id": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "get_video_transcript.py",
+      "function": "my_python_tool"
+    },
+    "select_best_video.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "question": {
+          "type": [
+            "string"
+          ]
+        },
+        "video_options": {
+          "type": [
+            "string"
+          ]
+        },
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "select_best_video.jinja2"
+    },
+    "reply_to_chat_with_transcript.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "question": {
+          "type": [
+            "string"
+          ]
+        },
+        "transcript": {
+          "type": [
+            "string"
+          ]
+        },
+        "video_id": {
+          "type": [
+            "string"
+          ]
+        },
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "reply_to_chat_with_transcript.jinja2"
+    },
+    "filter_search_results.py": {
+      "type": "python",
+      "inputs": {
+        "video_list": {
+          "type": [
+            "list"
+          ]
+        }
+      },
+      "source": "filter_search_results.py",
+      "function": "get_video_transcripts"
+    }
+  }
+}

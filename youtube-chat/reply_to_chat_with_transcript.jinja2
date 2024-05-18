@@ -1,0 +1,15 @@
+
+system:
+Reply to the user's question with reference to the following video transcript taken from: https://www.youtube.com/watch?v={{video_id}}
+{{transcript}}
+Link them to the video in your response.
+
+{% for item in chat_history %}
+user:
+{{item.inputs.question}}
+assistant:
+{{item.outputs.answer}}
+{% endfor %}
+
+user:
+{{question}}

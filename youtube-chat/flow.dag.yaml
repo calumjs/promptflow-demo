@@ -1,0 +1,79 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  chat_history:
+    type: list
+    is_chat_history: true
+    default: []
+  question:
+    type: string
+    is_chat_input: true
+    default: Tell me about Calum's most recent video from SSW TV
+outputs:
+  answer:
+    type: string
+    reference: ${reply_to_chat_with_transcript.output}
+    is_chat_output: true
+nodes:
+- name: generate_query
+  type: llm
+  source:
+    type: code
+    path: generate_query.jinja2
+  inputs:
+    deployment_name: gpt-35-turbo
+    max_tokens: 256
+    temperature: 0.7
+    chat_history: ${inputs.chat_history}
+    question: ${inputs.question}
+    model: gpt-4o
+  connection: open_ai_connection
+  api: chat
+- name: get_search_results
+  type: python
+  source:
+    type: code
+    path: get_search_results.py
+  inputs:
+    searchString: ${generate_query.output}
+    count: 20
+- name: get_video_transcript
+  type: python
+  source:
+    type: code
+    path: get_video_transcript.py
+  inputs:
+    video_id: ${select_best_video.output}
+- name: select_best_video
+  type: llm
+  source:
+    type: code
+    path: select_best_video.jinja2
+  inputs:
+    model: gpt-4o
+    chat_history: ${inputs.chat_history}
+    question: ${inputs.question}
+    video_options: ${filter_search_results.output}
+  connection: open_ai_connection
+  api: chat
+- name: reply_to_chat_with_transcript
+  type: llm
+  source:
+    type: code
+    path: reply_to_chat_with_transcript.jinja2
+  inputs:
+    question: ${inputs.question}
+    transcript: ${get_video_transcript.output}
+    video_id: ${select_best_video.output}
+    chat_history: ${inputs.chat_history}
+    model: gpt-4o
+  connection: open_ai_connection
+  api: chat
+- name: filter_search_results
+  type: python
+  source:
+    type: code
+    path: filter_search_results.py
+  inputs:
+    video_list: ${get_search_results.output}
