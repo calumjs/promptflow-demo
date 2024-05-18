@@ -1,5 +1,21 @@
-# Chat Flow
-Chat Flow is designed for conversational application development, building upon the capabilities of standard flow and providing enhanced support for chat inputs/outputs and chat history management. With chat flow, you can easily create a chatbot that handles chat input and output, including complex processes like handling queries about YouTube videos.
+# Youtube Chat Flow
+Built on top of the template Chat Flow, Youtube Chat Flow is designed to allow people to ask queries and get them answered by Youtube videos.
+
+Here's how it works:
+- **ChatGPT**: Converts the user's chat history into a search query.
+- **Python**: Executes a search on YouTube to find relevant videos.
+- **ChatGPT**: Analyzes the search results and selects the most relevant video based on the title.
+- **Python**: Downloads the transcript of the selected video.
+- **ChatGPT**: Responds to the user's question using insights extracted from the video transcript, providing a comprehensive and context-aware answer.
+
+
+## Install Prompt Flow Extension
+
+Before you begin, install the Prompt Flow extension from the Visual Studio Marketplace to integrate directly into your development environment.
+
+Visit: [Prompt Flow Extension](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow)
+
+After installation, go to **Quick Access | Install Dependencies** in your IDE to get Python and the necessary Promptflow packages ready.
 
 ## Create Connection for LLM Tool to Use
 You can follow these steps to create a connection required by the LLM tool.
