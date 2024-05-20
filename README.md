@@ -12,8 +12,8 @@ After installation, navigate to **Quick Access | Install Dependencies** in your 
 
 To interact with the LLM tool, you must establish a connection. There are two main types of connections:
 
-- **AzureOpenAI**: If you choose this connection type, create an Azure OpenAI service first. For more details, please visit [Azure Open AI Service](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/).
-- **OpenAI**: Alternatively, if you opt for the OpenAI connection type, you will need to create an OpenAI account. Visit [OpenAI](https://platform.openai.com/) for more information.
+- **OpenAI**: if you opt for the OpenAI connection type, you will need to create an OpenAI account. Visit [OpenAI](https://platform.openai.com/) for more information.
+- **AzureOpenAI**: - **OpenAI**: Alternatively, if you choose this connection type, create an Azure OpenAI service first. For more details, please visit [Azure Open AI Service](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/).
 
 Here are the commands to set up these connections:
 
@@ -41,3 +41,13 @@ Before deploying any chat flows, ensure that all required dependencies are insta
 ```bash
 pip install -r requirements.txt
 ```
+
+## Running
+
+To run the flow, use the following command:
+
+```bash
+pf flow test --flow ./youtube-chat --interactive
+```
+
+And ask it a question for it to answer by looking up a YouTube video, e.g. "What is Calum's latest video on SSWTV about?"
