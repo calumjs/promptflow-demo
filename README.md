@@ -2,7 +2,7 @@
 
 ## Install Prompt Flow Extension
 
-Before beginning any chat flow development, install the Prompt Flow extension from the Visual Studio Marketplace to seamlessly integrate it into your development environment. This extension facilitates the creation and management of chat flows directly within your IDE.
+Before beginning any development, install the Prompt Flow extension from the Visual Studio Marketplace to seamlessly integrate it into your development environment. This extension facilitates the creation and management of chat flows directly within your IDE.
 
 Visit: [Prompt Flow Extension](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow)
 
