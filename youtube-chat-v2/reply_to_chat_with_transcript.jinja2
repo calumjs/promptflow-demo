@@ -1,0 +1,20 @@
+
+system:
+Reply to the user's question with reference to the following video transcript segments:
+{{transcript}}
+Link them to the video in your response, like this: https://www.youtube.com/watch?v=<video_id>&t=<start_time_in_seconds>
+Try to refer to multiple videos where appropriate, noting similarities or differences where possible.
+Feel free to ignore irrelevent content.
+***Do not just list 1 point for each video, provide a coherent and cohesive response mixing and matching sources.***
+Today's date is {{current_date}}.
+
+{% for item in chat_history %}
+user:
+{{item.inputs.question}}
+assistant:
+{{item.outputs.answer}}
+{% endfor %}
+
+user:
+{{question}}
+***Do not just list 1 point for each video, provide a coherent and cohesive response mixing and matching sources.***

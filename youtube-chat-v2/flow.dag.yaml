@@ -1,0 +1,106 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  chat_history:
+    type: list
+    is_chat_history: true
+    default: []
+  question:
+    type: string
+    is_chat_input: true
+    default: What's the hottest news in tech right now?
+  config:
+    type: list
+    default: []
+outputs:
+  answer:
+    type: string
+    reference: ${reply_to_chat_with_transcript.output}
+    is_chat_output: true
+nodes:
+- name: generate_query
+  type: llm
+  source:
+    type: code
+    path: generate_query.jinja2
+  inputs:
+    deployment_name: gpt-35-turbo
+    max_tokens: 256
+    temperature: 0.7
+    chat_history: ${inputs.chat_history}
+    question: ${inputs.question}
+    model: gpt-4o
+    current_date: ${setup_env.output}
+  connection: open_ai_connection
+  api: chat
+- name: get_search_results
+  type: python
+  source:
+    type: code
+    path: get_search_results.py
+  inputs:
+    searchString: ${generate_query.output}
+    count: 20
+- name: reply_to_chat_with_transcript
+  type: llm
+  source:
+    type: code
+    path: reply_to_chat_with_transcript.jinja2
+  inputs:
+    question: ${inputs.question}
+    transcript: ${transcript_embedding_lookup.output}
+    chat_history: ${inputs.chat_history}
+    model: gpt-4o
+    current_date: ${setup_env.output}
+  connection: open_ai_connection
+  api: chat
+- name: get_video_transcripts
+  type: python
+  source:
+    type: code
+    path: get_video_transcripts.py
+  inputs:
+    video_list: ${get_search_results.output}
+- name: setup_env
+  type: python
+  source:
+    type: code
+    path: setup_env.py
+  inputs:
+    connection: open_ai_connection
+    config: ${inputs.config}
+- name: embed_transcripts
+  type: python
+  source:
+    type: code
+    path: embed_transcripts.py
+  inputs:
+    connection: open_ai_connection
+    video_transcripts: ${get_video_transcripts.output}
+    index_path: ../index
+    chunk_size: 1000
+- name: transcript_embedding_lookup
+  type: python
+  source:
+    type: code
+    path: transcript_embedding_lookup.py
+  inputs:
+    connection: open_ai_connection
+    query: ${generate_embedding_search_phrase.output}
+    index_path: ../index
+    transcripts_ready: ${embed_transcripts.output}
+    similarity_threshold: 0
+    num_results: 10
+- name: generate_embedding_search_phrase
+  type: llm
+  source:
+    type: code
+    path: generate_embedding_search_phrase.jinja2
+  inputs:
+    model: gpt-4o
+    chat_history: ${inputs.chat_history}
+    question: ${inputs.question}
+    current_date: ${setup_env.output}
+  connection: open_ai_connection
+  api: chat
