@@ -1,2 +1,3 @@
 promptflow
 youtube_transcript_api
+bs4
