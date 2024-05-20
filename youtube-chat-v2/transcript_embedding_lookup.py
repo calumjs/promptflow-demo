@@ -1,3 +1,4 @@
+from math import floor
 from promptflow import tool
 import faiss
 import numpy as np
@@ -44,7 +45,7 @@ def search_segments(connection: OpenAIConnection, query: str, index_path: str, t
         results.append({
             'video_id': video_id,
             'video_title': video_title,
-            'start_time': start_time * 100,
+            'start_time': floor(start_time),
             'embedded_text': embedded_text
         })
 
