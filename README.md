@@ -36,7 +36,11 @@ Using virtual environments allows you to create isolated environments for differ
    - Create a new virtual environment with Python 3.9 or later:
      ```bash
      conda create --name myenv python=3.9
+     conda init
      ```
+
+   - Restart VS Code or the terminal to activate the virtual environment.
+   
    - Activate the virtual environment:
      ```bash
      conda activate myenv
