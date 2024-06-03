@@ -16,7 +16,7 @@ conda info
 
 If these commands do not work, follow the steps below to install Python. You'll need Python 3.9 or later. We recommend using a virtual environment to manage dependencies, such as [Anaconda](https://www.anaconda.com/products/distribution). However, installing Python directly is also acceptable.
 
-We recommend using virtual environments to manage dependencies. This allows you to create isolated environments for different projects, preventing conflicts between dependencies. You can use Anaconda or Python's built-in `venv` module to create virtual environments.
+Using virtual environments allows you to create isolated environments for different projects, preventing conflicts between dependencies. You can use Anaconda or Python's built-in `venv` module to create virtual environments.
 
 ### Option 1: Installing Anaconda with Python
 
@@ -73,17 +73,17 @@ After installation, navigate to **Quick Access | Install Dependencies** in your 
 
 To interact with the LLM tool, you must establish a connection. There are two main types of connections:
 
-- **OpenAI**: if you opt for the OpenAI connection type, you will need to create an OpenAI account. Visit [OpenAI](https://platform.openai.com/) for more information.
-- **AzureOpenAI**: - **OpenAI**: Alternatively, if you choose this connection type, create an Azure OpenAI service first. For more details, please visit [Azure Open AI Service](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/).
+- **OpenAI**: If you opt for the OpenAI connection type, you will need to create an OpenAI account. Visit [OpenAI](https://platform.openai.com/) for more information.
+- **Azure OpenAI**: Alternatively, if you choose this connection type, create an Azure OpenAI service first. For more details, please visit [Azure OpenAI Service](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/).
 
 Here are the commands to set up these connections:
 
 ```bash
 # Override keys with --set to avoid yaml file changes
-# Create open ai connection
+# Create OpenAI connection
 pf connection create --file openai.yaml --set api_key=<your_api_key> --name open_ai_connection
 
-# Create azure open ai connection
+# Create Azure OpenAI connection
 pf connection create --file azure_openai.yaml --set api_key=<your_api_key> api_base=<your_api_base> --name open_ai_connection
 ```
 
@@ -111,4 +111,4 @@ To run the flow, use the following command:
 pf flow test --flow ./youtube-chat --interactive
 ```
 
-And ask it a question for it to answer by looking up a YouTube video, e.g. "What is Calum's latest video on SSWTV about?"
+Ask it a question for it to answer by looking up a YouTube video, e.g., "What is Calum's latest video on SSW TV about?"
