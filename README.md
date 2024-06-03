@@ -1,5 +1,66 @@
 # Prompt Flow Demo
 
+## Pre-requisites
+
+First, check if Python is already installed on your system. Open your terminal and try running the following commands:
+
+```bash
+python --version
+```
+
+or
+
+```bash
+conda info
+```
+
+If these commands do not work, follow the steps below to install Python. You'll need Python 3.9 or later. We recommend using a virtual environment to manage dependencies, such as [Anaconda](https://www.anaconda.com/products/distribution). However, installing Python directly is also acceptable.
+
+Using virtual environments allows you to create isolated environments for different projects, preventing conflicts between dependencies. You can use Anaconda or Python's built-in `venv` module to create virtual environments.
+
+### Option 1: Installing Anaconda with Python
+
+1. **Download and Install Anaconda:**
+   - Visit the [Anaconda Distribution page](https://www.anaconda.com/products/distribution).
+   - Download the installer for your operating system.
+   - Follow the installation instructions on the Anaconda website. (Make sure to check the box that adds Anaconda to your system's PATH during installation)
+
+2. **Verify the Installation:**
+   - Open your terminal and run:
+     ```bash
+     conda --version
+     ```
+   - This should display the version of Conda installed, confirming that Anaconda is correctly set up.
+
+3. **Setting Up a Virtual Environment (Optional but Recommended):**
+   - Create a new virtual environment with Python 3.9 or later:
+     ```bash
+     conda create --name myenv python=3.9
+     ```
+   - Activate the virtual environment:
+     ```bash
+     conda activate myenv
+     ```
+
+### Option 2: Installing Python Directly
+
+1. **Download Python:**
+   - Visit the [Python Downloads page](https://www.python.org/downloads/).
+   - Download the installer for Python 3.9 or later for your operating system.
+   - Follow the installation instructions on the Python website.
+
+2. **Verify the Installation:**
+   - Open your terminal and run:
+     ```bash
+     python --version
+     ```
+   - This should display the version of Python installed, confirming that Python is correctly set up.
+
+**Important Note:**
+
+Regardless of how you install Python (via Anaconda or directly), ensure that the Python executable is included in your system's PATH. This allows you to run Python commands from any terminal window.
+
+
 ## Install Prompt Flow Extension
 
 Before beginning any development, install the Prompt Flow extension from the Visual Studio Marketplace to seamlessly integrate it into your development environment. This extension facilitates the creation and management of chat flows directly within your IDE.
@@ -12,17 +73,17 @@ After installation, navigate to **Quick Access | Install Dependencies** in your 
 
 To interact with the LLM tool, you must establish a connection. There are two main types of connections:
 
-- **OpenAI**: if you opt for the OpenAI connection type, you will need to create an OpenAI account. Visit [OpenAI](https://platform.openai.com/) for more information.
-- **AzureOpenAI**: - **OpenAI**: Alternatively, if you choose this connection type, create an Azure OpenAI service first. For more details, please visit [Azure Open AI Service](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/).
+- **OpenAI**: If you opt for the OpenAI connection type, you will need to create an OpenAI account. Visit [OpenAI](https://platform.openai.com/) for more information.
+- **Azure OpenAI**: Alternatively, if you choose this connection type, create an Azure OpenAI service first. For more details, please visit [Azure OpenAI Service](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/).
 
 Here are the commands to set up these connections:
 
 ```bash
 # Override keys with --set to avoid yaml file changes
-# Create open ai connection
+# Create OpenAI connection
 pf connection create --file openai.yaml --set api_key=<your_api_key> --name open_ai_connection
 
-# Create azure open ai connection
+# Create Azure OpenAI connection
 pf connection create --file azure_openai.yaml --set api_key=<your_api_key> api_base=<your_api_base> --name open_ai_connection
 ```
 
@@ -50,4 +111,4 @@ To run the flow, use the following command:
 pf flow test --flow ./youtube-chat --interactive
 ```
 
-And ask it a question for it to answer by looking up a YouTube video, e.g. "What is Calum's latest video on SSWTV about?"
+Ask it a question for it to answer by looking up a YouTube video, e.g., "What is Calum's latest video on SSW TV about?"
