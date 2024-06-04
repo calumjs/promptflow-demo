@@ -18,6 +18,8 @@ If these commands do not work, follow the steps below to install Python. You'll 
 
 Using virtual environments allows you to create isolated environments for different projects, preventing conflicts between dependencies. You can use Anaconda or Python's built-in `venv` module to create virtual environments.
 
+**NOTE:** For Prompt Flow, Python needs to be >= 3.9 and < 3.12. (June 2024ZYZS)
+
 ### Option 1: Installing Anaconda with Python
 
 1. **Download and Install Anaconda:**
@@ -36,7 +38,11 @@ Using virtual environments allows you to create isolated environments for differ
    - Create a new virtual environment with Python 3.9 or later:
      ```bash
      conda create --name myenv python=3.9
+     conda init
      ```
+
+   - Restart VS Code or the terminal to activate the virtual environment.
+   
    - Activate the virtual environment:
      ```bash
      conda activate myenv
@@ -69,6 +75,16 @@ Visit: [Prompt Flow Extension](https://marketplace.visualstudio.com/items?itemNa
 
 After installation, navigate to **Quick Access | Install Dependencies** in your IDE to prepare Python and the necessary Promptflow packages.
 
+## Installation Requirements
+
+Before deploying any chat flows, ensure that all required dependencies are installed. This step is crucial for the smooth functioning of your chat flows.
+
+Run in `youtube-chat` and `youtube-chat-v2` directories:
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Create Connection for LLM Tool to Use
 
 To interact with the LLM tool, you must establish a connection. There are two main types of connections:
@@ -94,14 +110,6 @@ pf connection show --name open_ai_connection
 ```
 
 Refer to the connections [documentation](https://promptflow.azurewebsites.net/community/local/manage-connections.html) and [examples](https://github.com/microsoft/promptflow/tree/main/examples/connections) for further details.
-
-## Installation Requirements
-
-Before deploying any chat flows, ensure that all required dependencies are installed. This step is crucial for the smooth functioning of your chat flows.
-
-```bash
-pip install -r requirements.txt
-```
 
 ## Running
 
